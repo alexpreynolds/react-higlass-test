@@ -1,0 +1,30 @@
+#root {
+  height: calc(100vh);
+  width: calc(100vw);
+  overflow: hidden;
+  overscroll-behavior: contain;
+  position: fixed;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: 
+    ui-sans-serif, 
+    system-ui, 
+    -system-ui, 
+    -apple-system,
+    BlinkMacSystemFont,
+    Roboto, Helvetica, Arial, 
+    sans-serif, 
+    "Apple Color Emoji" !important; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.02rem;
+  overflow: auto;
+  cursor: default;
+  user-select: none;
+  overscroll-behavior: contain;
+  touch-action: none !important;
+}
