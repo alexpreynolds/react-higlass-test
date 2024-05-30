@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useMemo, useEffect} from 'react';
 import {useWindowSize} from 'react-use';
 
 import HgContainer from '../HgContainer/HgContainer';
@@ -22,14 +22,14 @@ function debounce(func, wait, immediate) {
 const Container = () => {
   const {width, height} = useWindowSize();
 
+  const handleWindowSizeChange = useMemo(
+    () => debounce((width, height) => { console.log(`debounced width: ${width} | height: ${height}`); }, Constants.windowSizeDebounceTime), 
+    []
+  );
+
   useEffect(() => {
     handleWindowSizeChange(width, height);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [width, height]);
-
-  const handleWindowSizeChange = useCallback(debounce((width, height) => {
-    console.log(`debounced width: ${width} | height: ${height}`);
-  }, Constants.windowSizeDebounceTime), [width, height]); 
+  }, [handleWindowSizeChange, width, height]);
 
   return (
     <div>
