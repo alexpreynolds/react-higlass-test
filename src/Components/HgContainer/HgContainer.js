@@ -22,10 +22,10 @@ import "higlass-sequence/dist/higlass-sequence.js";
 
 // higlass-transcripts
 // ref. https://github.com/higlass/higlass-transcripts
-// import "higlass-transcripts/dist/higlass-transcripts.js";
+import "higlass-transcripts/dist/higlass-transcripts.js";
 //
-// import { default as higlassRegister } from "higlass-register/dist/higlass-register";
-// import { TabixDataFetcher } from "higlass-tabix-datafetcher";
+import { default as higlassRegister } from "higlass-register/dist/higlass-register";
+import { TabixDataFetcher } from "higlass-tabix-datafetcher";
 
 import * as Constants from '../../Constants.js';
 
@@ -53,23 +53,23 @@ class HgContainer extends Component {
     // uncomment the higlass-register call to use the tabix data fetcher (to support the higlass-transcripts plugin)
     //
 
-    // higlassRegister(
-    //   {
-    //     dataFetcher: TabixDataFetcher,
-    //     config: TabixDataFetcher.config,
-    //   },
-    //   { pluginType: "dataFetcher" }
-    // );
+    higlassRegister(
+      {
+        dataFetcher: TabixDataFetcher,
+        config: TabixDataFetcher.config,
+      },
+      { pluginType: "dataFetcher" }
+    );
 
     //
-    // re-adjust height of pileup track for convenience
+    // re-adjust height of target test track for convenience
     //
 
     let availableHeight = this.props.height - 60;
     const viewconf = JSON.parse(JSON.stringify(Constants.baseHg38Viewconf));
     const topTracks = viewconf.views[0].tracks.top;
     for (const topTrack of topTracks) {
-      if (topTrack.type !== "pileup") {
+      if (topTrack.type !== "horizontal-transcripts") {
         availableHeight -= topTrack.height;
       }
       else {
@@ -81,7 +81,7 @@ class HgContainer extends Component {
 
   render() {
     return (
-      (this.state.hgViewconf && this.props.height > 100) 
+      (this.state.hgViewconf && this.props.height > 0) 
         ? 
         <div style={{width: this.props.width, height: this.props.height}}>
           <HiGlassComponent 

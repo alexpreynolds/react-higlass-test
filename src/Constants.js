@@ -37,8 +37,8 @@ export const baseHg38Viewconf = {
       {
         "uid" : "cd3PosD2GimelbrantTrackHubTestCombined",
         "initialXDomain": [
-          2670804998.0062256,
-          2670805811.9694824
+          2670304998.0062256,
+          2670905811.9694824
         ],
         "genomePositionSearchBoxVisible" : false,
         "genomePositionSearchBox" : {},
@@ -87,65 +87,65 @@ export const baseHg38Viewconf = {
               "height": 14,
               "position": "top",
             },
-            // {
-            //   "name": "Gencode v38",
-            //   "type": "horizontal-transcripts",
-            //   "uid": "gencode.v38.annotation",
-            //   "options": {
-            //     "name" : "gene transcripts",
-            //     "blockStyle": "directional",
-            //     "maxRows": 6,
-            //     "maxTexts": 50,
-            //     "labelFontSize": 8,
-            //     "labelFontWeight": 500,
-            //     "transcriptHeight": 12,
-            //     "transcriptSpacing": 2,
-            //     "showMousePosition": true,
-            //     "startCollapsed": false,
-            //     "showToggleTranscriptsButton": false,
-            //     "utrColor": "grey",
-            //     "plusStrandColor": "#111111",
-            //     "minusStrandColor": "#111111",
-            //     "trackMargin": {top:10, bottom:10, left:0, right:0},
-            //     "blockCalculateTranscriptCounts": true,
-            //     "highlightTranscriptType": "longestIsoform",
-            //     "highlightTranscriptTrackBackgroundColor": "#fdcfcf",
-            //   },
-            //   "height" : appGeneAnnotationTrackHeight,
-            //   "data" : {
-            //     "type": "tabix",
-            //     "url": `${appDataSourceURLPrefixes['AmazonCDN']}/tabix/gencode.v38.annotation.gtf.higlass-transcripts.hgnc.090721.forceHGNC.gz`,
-            //     "chromSizesUrl": hg38ChromsizesURL,
-            //   },
-            // },
             {
-              "type": "pileup",
+              "name": "Gencode v38",
+              "type": "horizontal-transcripts",
+              "uid": "gencode.v38.annotation",
               "options": {
-                "axisPositionHorizontal": "right",
-                "axisLabelFormatting": "normal",
-                "showCoverage": false,
-                "colorScale": [
-                  // A T G C N Other
-                  "#2c7bb6",
-                  "#92c5de",
-                  "#ffffbf",
-                  "#fdae61",
-                  "#808080",
-                  "#DCDCDC"
-                ]
+                "name" : "gene transcripts",
+                "blockStyle": "directional",
+                "maxRows": 6,
+                "maxTexts": 50,
+                "labelFontSize": 8,
+                "labelFontWeight": 500,
+                "transcriptHeight": 12,
+                "transcriptSpacing": 2,
+                "showMousePosition": true,
+                "startCollapsed": false,
+                "showToggleTranscriptsButton": false,
+                "utrColor": "grey",
+                "plusStrandColor": "#111111",
+                "minusStrandColor": "#111111",
+                "trackMargin": {top:10, bottom:10, left:0, right:0},
+                "blockCalculateTranscriptCounts": true,
+                "highlightTranscriptType": "longestIsoform",
+                "highlightTranscriptTrackBackgroundColor": "#fdcfcf",
               },
-              "height": 300,
-              "uid": "FylkvVBTSumoJ959HT4-5A",
-              "data": {
-                "type": "bam",
-                "bamUrl": `${appDataSourceURLPrefixes['AmazonCDN']}/test/GRCh38.illumina.brain.1.chr.bam`,
-                "baiUrl": `${appDataSourceURLPrefixes['AmazonCDN']}/test/GRCh38.illumina.brain.1.chr.bam.bai`,
+              "height" : appGeneAnnotationTrackHeight,
+              "data" : {
+                "type": "tabix",
+                "url": `${appDataSourceURLPrefixes['AmazonCDN']}/tabix/gencode.v38.annotation.gtf.higlass-transcripts.hgnc.090721.forceHGNC.gz`,
                 "chromSizesUrl": hg38ChromsizesURL,
-                "options": {
-                  "maxTileWidth": 30000,
-                }
               },
-            }
+            },
+            // {
+            //   "type": "pileup",
+            //   "options": {
+            //     "axisPositionHorizontal": "right",
+            //     "axisLabelFormatting": "normal",
+            //     "showCoverage": false,
+            //     "colorScale": [
+            //       // A T G C N Other
+            //       "#2c7bb6",
+            //       "#92c5de",
+            //       "#ffffbf",
+            //       "#fdae61",
+            //       "#808080",
+            //       "#DCDCDC"
+            //     ]
+            //   },
+            //   "height": 300,
+            //   "uid": "FylkvVBTSumoJ959HT4-5A",
+            //   "data": {
+            //     "type": "bam",
+            //     "bamUrl": `${appDataSourceURLPrefixes['AmazonCDN']}/test/GRCh38.illumina.brain.1.chr.bam`,
+            //     "baiUrl": `${appDataSourceURLPrefixes['AmazonCDN']}/test/GRCh38.illumina.brain.1.chr.bam.bai`,
+            //     "chromSizesUrl": hg38ChromsizesURL,
+            //     "options": {
+            //       "maxTileWidth": 30000,
+            //     }
+            //   },
+            // }
           ]
         },
         "layout": {
