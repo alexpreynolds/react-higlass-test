@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.0.0",
     "bootstrap": "^5.2.3",
     "higlass": "1.12.4",
+    "higlass-bigwig-datafetcher": "^0.2.0",
     "higlass-pileup": "^1.5.0",
     "higlass-register": "^0.3.0",
     "higlass-sequence": "^0.3.5",

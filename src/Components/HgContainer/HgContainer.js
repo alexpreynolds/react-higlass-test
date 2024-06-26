@@ -25,9 +25,12 @@ import "higlass-sequence/dist/higlass-sequence.js";
 import "higlass-transcripts/dist/higlass-transcripts.js";
 //
 import { default as higlassRegister } from "higlass-register/dist/higlass-register";
+import { BigwigDataFetcher } from "higlass-bigwig-datafetcher";
 import { TabixDataFetcher } from "higlass-tabix-datafetcher";
 
 import * as Constants from '../../Constants.js';
+
+import './HgContainer.css';
 
 class HgContainer extends Component {
   constructor(props) {
@@ -49,9 +52,13 @@ class HgContainer extends Component {
     }
     this.hgViewRef = React.createRef();
 
-    //
-    // uncomment the higlass-register call to use the tabix data fetcher (to support the higlass-transcripts plugin)
-    //
+    higlassRegister(
+      {
+        dataFetcher: BigwigDataFetcher,
+        config: BigwigDataFetcher.config,
+      },
+      { pluginType: "dataFetcher" }
+    );
 
     higlassRegister(
       {
@@ -65,11 +72,11 @@ class HgContainer extends Component {
     // re-adjust height of target test track for convenience
     //
 
-    let availableHeight = this.props.height - 60;
-    const viewconf = JSON.parse(JSON.stringify(Constants.baseHg38Viewconf));
+    let availableHeight = this.props.height - Constants.widgetHeight;
+    const viewconf = JSON.parse(JSON.stringify(Constants.trackAViewconf));
     const topTracks = viewconf.views[0].tracks.top;
     for (const topTrack of topTracks) {
-      if (topTrack.type !== "horizontal-transcripts") {
+      if (topTrack.type !== "pileup") {
         availableHeight -= topTrack.height;
       }
       else {
@@ -79,18 +86,55 @@ class HgContainer extends Component {
     this.state.hgViewconf = viewconf;
   }
 
+  handleToggleSelect = (e) => {
+    // console.log(`handleToggleSelect | ${JSON.stringify(e.target.value)}`);
+    const d = e.target.value;
+    let vc = null;
+    switch (d) {
+      case 'trackA':
+        vc = JSON.parse(JSON.stringify(Constants.trackAViewconf));
+        break;
+      case 'trackB':
+        vc = JSON.parse(JSON.stringify(Constants.trackBViewconf));
+        break;
+      default:
+        throw new Error(`Unexpected track toggle value: ${d}`);
+    }
+    let availableHeight = this.props.height - Constants.widgetHeight;
+    const topTracks = vc.views[0].tracks.top;
+    for (const topTrack of topTracks) {
+      if (topTrack.type !== "pileup") {
+        availableHeight -= topTrack.height;
+      }
+      else {
+        topTrack.height = availableHeight;
+      }
+    }
+    this.setState({
+      hgViewconf: vc,
+    });
+  }
+
   render() {
     return (
       (this.state.hgViewconf && this.props.height > 0) 
         ? 
-        <div style={{width: this.props.width, height: this.props.height}}>
-          <HiGlassComponent 
-            key={"testHGC"}
-            ref={this.hgViewRef}
-            options={this.state.hgOptions}
-            viewConfig={this.state.hgViewconf}
-          /> 
-        </div> 
+        <div>
+          <div className="toggleLayer">
+            <select className="toggleSelect" onChange={(e) => this.handleToggleSelect(e)}>
+              <option value="trackA" default>Track A</option>
+              <option value="trackB">Track B</option>
+            </select>
+          </div>
+          <div className="hgViewLayer" style={{width: this.props.width, height: this.props.height}}>
+            <HiGlassComponent 
+              key={"testHGC"}
+              ref={this.hgViewRef}
+              options={this.state.hgOptions}
+              viewConfig={this.state.hgViewconf}
+            /> 
+          </div> 
+        </div>
         :
         <div>
           <h6>loading HiGlassComponent...</h6>

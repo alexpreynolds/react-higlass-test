@@ -1,0 +1,17 @@
+.hgViewLayer {
+  position: absolute;
+  z-index: 1;
+}
+
+.toggleLayer {
+  position: absolute;
+  z-index: 2;
+  bottom: 30px;
+  right: 30px;
+}
+
+.toggleSelect {
+  font-size: 1.5rem;
+  background-color: blue;
+  color: white;
+}

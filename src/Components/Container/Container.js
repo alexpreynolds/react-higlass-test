@@ -34,6 +34,7 @@ const Container = () => {
   return (
     <div>
       <HgContainer
+        className="hgViewLayer"
         width={width}
         height={height} 
         />
