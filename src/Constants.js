@@ -212,8 +212,8 @@ export const trackBViewconf = {
       {
         "uid" : "cd3PosD2GimelbrantTrackHubTestCombined",
         "initialXDomain": [
-          2857300000,
-          2857310000
+          2857306000,
+          2857306200
         ],
         "genomePositionSearchBoxVisible" : false,
         "genomePositionSearchBox" : {},

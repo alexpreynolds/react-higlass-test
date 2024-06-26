@@ -49,6 +49,7 @@ class HgContainer extends Component {
         viewPaddingRight: 0,
       },
       hgViewconf: {},
+      hgViewKey: 1,
     }
     this.hgViewRef = React.createRef();
 
@@ -112,6 +113,7 @@ class HgContainer extends Component {
     }
     this.setState({
       hgViewconf: vc,
+      hgViewKey: this.state.hgViewKey + 1,
     });
   }
 
@@ -128,7 +130,7 @@ class HgContainer extends Component {
           </div>
           <div className="hgViewLayer" style={{width: this.props.width, height: this.props.height}}>
             <HiGlassComponent 
-              key={"testHGC"}
+              key={this.state.hgViewKey}
               ref={this.hgViewRef}
               options={this.state.hgOptions}
               viewConfig={this.state.hgViewconf}
